@@ -1,0 +1,14 @@
+.reviews-title {
+    text-align: center;
+}
+.reviews-list {
+    text-align: left;
+    li {
+        border-radius: 4px;
+        box-shadow: -3px 2px 17px 0px rgba(164, 149, 26, 0.75);
+        -webkit-box-shadow: -3px 2px 17px 0px rgba(164, 149, 26, 0.75);
+        -moz-box-shadow: -3px 2px 17px 0px rgba(164, 149, 26, 0.75);
+        margin: 10px 0;
+        padding: 20px;
+    }
+}

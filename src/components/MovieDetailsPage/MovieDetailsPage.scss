@@ -1,0 +1,23 @@
+.movie-detail-item {
+    display: flex;
+    flex-direction: row;
+}
+.movie-description {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    p {
+        display: flex;
+        flex-direction: row;
+    }
+    &__genre {
+        font-size: 20px;
+    }
+    &__genre:not(:last-child) {
+        margin-right: 10px;
+    }
+    &__overview {
+        font-size: 18px;
+    }
+}

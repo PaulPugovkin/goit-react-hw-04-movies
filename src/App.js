@@ -43,7 +43,7 @@ function App() {
                     <SearchBar handleOnSubmit={handleOnSubmit} />
                     {queryHits.length > 0 && <MoviesPage hits={queryHits} />}
                 </Route>
-                <Route exact path="/movies/:movieID">
+                <Route path="/movies/:movieID">
                     <MovieDetailsPage />
                 </Route>
                 <Route>

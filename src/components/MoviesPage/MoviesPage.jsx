@@ -1,33 +1,42 @@
 import { Link, useRouteMatch } from 'react-router-dom';
 import { Image, Icon } from 'semantic-ui-react';
 import './MoviesPage.scss';
+import emptyPoster from '../../empty-poster.png';
+
 const MoviesPage = ({ hits }) => {
     const { url } = useRouteMatch();
 
     return (
-        <ul>
+        <ul className="movies-list">
             {hits.map(movie => (
-                <li key={movie.id} className="movie-list__item">
-                    <Link to={`${url}/${movie.id}`}>
-                        <h2>{movie.original_title || movie.original_name}</h2>
-                        {movie.backdrop_path !== null ? (
-                            <>
-                                <Image
-                                    src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
-                                    alt=""
-                                />
-                                <span>
-                                    Rating: {movie.vote_average}
-                                    <Icon name="star" />
-                                </span>
-                                <span>
-                                    Release date:
-                                    {movie.release_date}
-                                </span>
-                            </>
-                        ) : (
-                            <h3>Netu kartinki</h3>
-                        )}
+                <li key={movie.id} className="movies-list__item">
+                    <Link
+                        to={`${url}/${movie.id}`}
+                        className="movies-list__item-link"
+                    >
+                        <h2 className="movies-list__item-title">
+                            {movie.original_title || movie.original_name}
+                        </h2>
+                        <Image
+                            src={
+                                movie.backdrop_path
+                                    ? `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`
+                                    : `${emptyPoster}`
+                            }
+                            alt=""
+                            width="500"
+                            className="movies-list__item-image"
+                        />
+                        <p className="movies-list__item-description">
+                            <span>
+                                Rating: {movie.vote_average}
+                                <Icon name="star" />
+                            </span>
+                            <span>
+                                Release date:
+                                {movie.release_date}
+                            </span>
+                        </p>
                     </Link>
                 </li>
             ))}

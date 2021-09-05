@@ -10,7 +10,7 @@ import MovieDetailsPage from './components/MovieDetailsPage';
 
 function App() {
     const [searchQuery, setQuery] = useState('');
-    const [hits, setHits] = useState([]);
+    const [popularHits, setPopularHits] = useState([]);
     const [queryHits, setQueryHits] = useState([]);
 
     const fetching = async (query, mountHits) => {
@@ -20,7 +20,7 @@ function App() {
     };
 
     // Fetch popular films
-    useEffect(() => fetching('trending/all/day', setHits), []);
+    useEffect(() => fetching('trending/all/day', setPopularHits), []);
 
     // Fetch by user query
     useEffect(() => {
@@ -37,7 +37,7 @@ function App() {
             <Navigation />
             <Switch>
                 <Route exact path="/">
-                    <HomePage hits={hits} />
+                    <HomePage hits={popularHits} />
                 </Route>
                 <Route exact path="/movies">
                     <SearchBar handleOnSubmit={handleOnSubmit} />

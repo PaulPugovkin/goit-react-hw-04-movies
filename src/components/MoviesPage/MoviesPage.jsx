@@ -14,7 +14,7 @@ const MoviesPage = ({ hits }) => {
                         to={`${url}/${movie.id}`}
                         className="movies-list__item-link"
                     >
-                        <h2 className="movies-list__item-title">
+                        <h2 className="movies-list__title">
                             {movie.original_title || movie.original_name}
                         </h2>
                         <Image

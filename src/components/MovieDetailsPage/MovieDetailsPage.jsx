@@ -33,6 +33,7 @@ const MovieDetailsPage = () => {
                             src={`https://image.tmdb.org/t/p/w500${item.backdrop_path}`}
                             alt=""
                             width="500"
+                            className="movie-detail-item__image"
                         />
                         <div className="movie-description">
                             <h2>{item.original_title}</h2>
@@ -51,12 +52,25 @@ const MovieDetailsPage = () => {
                                     ))}
                                 </p>
                             )}
+                            <div className="about-links">
+                                <Link
+                                    to={`${url}/cast`}
+                                    className="about-links__item"
+                                >
+                                    Cast
+                                </Link>
+                                <Link
+                                    to={`${url}/review`}
+                                    className="about-links__item"
+                                >
+                                    Review
+                                </Link>
+                            </div>
                         </div>
                     </li>
                 ))}
             </ul>
-            <Link to={`${url}/cast`}>Cast</Link>
-            <Link to={`${url}/review`}>Review</Link>
+
             <Switch>
                 <Route path={`${path}/cast`}>
                     <Cast movieID={movieID} />

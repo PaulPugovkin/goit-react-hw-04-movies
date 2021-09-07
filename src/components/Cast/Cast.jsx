@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import fetchMovies, { API_OPTIONS } from '../../services/api-movie';
-import emptyImage from '../../empty-image.png';
+import emptyImage from '../../images/empty-image.png';
 import './Cast.scss';
 
 const Cast = ({ movieID }) => {

@@ -1,7 +1,7 @@
 import { Link, useRouteMatch } from 'react-router-dom';
 import { Image, Icon } from 'semantic-ui-react';
 import './MoviesPage.scss';
-import emptyPoster from '../../empty-poster.png';
+import emptyPoster from '../../images/empty-poster.png';
 
 const MoviesPage = ({ hits }) => {
     const { url } = useRouteMatch();

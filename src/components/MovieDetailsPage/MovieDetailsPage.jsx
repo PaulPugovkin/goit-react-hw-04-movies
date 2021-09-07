@@ -22,8 +22,6 @@ const MovieDetailsPage = () => {
         fetching(`movie/${movieID}`, setMovie);
     }, [movieID]);
 
-    console.log(movie);
-
     return (
         <Container>
             <ul className="movie-detail-list">

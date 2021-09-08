@@ -47,7 +47,12 @@ const MoviesPage = () => {
                     queryHits.map(movie => (
                         <li key={movie.id} className="movies-list__item">
                             <Link
-                                to={`${url}/${movie.id}`}
+                                to={{
+                                    pathname: `${url}/${movie.id}`,
+                                    state: {
+                                        from: `${location.pathname}${location.search}`,
+                                    },
+                                }}
                                 className="movies-list__item-link"
                             >
                                 <h2 className="movies-list__title">

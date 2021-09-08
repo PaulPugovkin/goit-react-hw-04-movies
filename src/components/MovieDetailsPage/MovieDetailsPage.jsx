@@ -1,16 +1,27 @@
-import { useEffect, useState } from 'react';
-import { Route, Switch, useParams, useRouteMatch } from 'react-router';
+import { lazy, useEffect, useState } from 'react';
+import {
+    Route,
+    Switch,
+    useLocation,
+    useParams,
+    useRouteMatch,
+} from 'react-router';
 import { Link } from 'react-router-dom';
 import { Container, Image } from 'semantic-ui-react';
 import fetchMovies, { API_OPTIONS } from '../../services/api-movie';
-import Cast from '../Cast/';
-import Reviews from '../Reviews';
 import './MovieDetailsPage.scss';
+
+const Cast = lazy(() => import('../Cast/Cast.jsx'));
+const Reviews = lazy(() => import('../Reviews/Reviews.jsx'));
 
 const MovieDetailsPage = () => {
     const { url, path } = useRouteMatch();
     const { movieID } = useParams();
+
     const [movie, setMovie] = useState([]);
+    const [comeFrom, setComeFrom] = useState('');
+
+    const location = useLocation();
 
     const fetching = async (query, mountHits) => {
         API_OPTIONS.QUERY_TYPE = query;
@@ -22,8 +33,13 @@ const MovieDetailsPage = () => {
         fetching(`movie/${movieID}`, setMovie);
     }, [movieID]);
 
+    useEffect(() => {
+        setComeFrom(location?.state?.search ?? location?.state?.from ?? '/');
+    }, [location.state]);
+
     return (
         <Container>
+            <Link to={comeFrom}>Go back</Link>
             <ul className="movie-detail-list">
                 {movie?.map(item => (
                     <li key={item.id} className="movie-detail-item">
@@ -52,13 +68,25 @@ const MovieDetailsPage = () => {
                             )}
                             <div className="about-links">
                                 <Link
-                                    to={`${url}/cast`}
+                                    to={{
+                                        pathname: `${url}/cast`,
+                                        state: {
+                                            search: `${comeFrom}`,
+                                            from: `${comeFrom}`,
+                                        },
+                                    }}
                                     className="about-links__item"
                                 >
                                     Cast
                                 </Link>
                                 <Link
-                                    to={`${url}/review`}
+                                    to={{
+                                        pathname: `${url}/review`,
+                                        state: {
+                                            search: `${comeFrom}`,
+                                            from: `${comeFrom}`,
+                                        },
+                                    }}
                                     className="about-links__item"
                                 >
                                     Review
